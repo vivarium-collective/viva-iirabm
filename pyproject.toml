@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "viva-iirabm"
+version = "0.1.0"
+description = "Process-bigraph wrapper for the Innate Immune Response ABM (IIRABM); reproduces Cockrell & An 2018 sepsis-controllability results"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [{name = "Eran Agmon", email = "agmon.eran@gmail.com"}]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "bigraph-schema>=0.0.60",
+    "process-bigraph>=0.0.66",
+    "numpy",
+    "plotly>=6",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+cli = ["typer", "rich"]
+dev = ["pytest", "pyyaml", "jsonschema", "jinja2"]
+
+[project.urls]
+Homepage = "https://github.com/vivarium-collective/viva-iirabm"
+Issues = "https://github.com/vivarium-collective/viva-iirabm/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["viva_iirabm"]
+# ship the vendored C++ sources + port so the binary can be built from the wheel
+artifacts = ["vendor/**"]
+
+[tool.hatch.build.targets.sdist]
+include = ["viva_iirabm", "vendor", "README.md"]
+
+[tool.pytest.ini_options]
+markers = ["slow: long-running simulations (deselect with -m 'not slow')"]
+
+[project.scripts]
+iirabm = "viva_iirabm.cli.__main__:main"
+
+[tool.uv.sources]
+vivarium-workbench = { path = "/Users/eranagmon/code/vivarium-workbench", editable = true }
