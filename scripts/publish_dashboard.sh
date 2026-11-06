@@ -6,7 +6,7 @@
 set -euo pipefail
 WS_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="${1:-$WS_ROOT/reports/published/workbench}"
-BASE_PATH="/viva-iirabm/dashboard"
+BASE_PATH="/viva-iirabm/workbench"
 INTERACTIVE_URL="https://github.com/vivarium-collective/viva-iirabm"
 rm -rf "$OUT"
 PYTHONPATH="$WS_ROOT${PYTHONPATH:+:$PYTHONPATH}" \
