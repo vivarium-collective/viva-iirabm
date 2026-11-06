@@ -1,7 +1,7 @@
 {
   "mode": "snapshot",
   "smsApiBase": "",
-  "repo": "https://github.com/vivarium-collective/viva-iirabm.git",
-  "commit": "e96345e0efe174a3aec03cb903bd455e4ed0a520",
+  "repo": "https://github.com/vivarium-collective/viva-iirabm",
+  "commit": "1a98b14900096952dad4bab588672051c22d51d5",
   "generated_from_ref": "main"
 }
