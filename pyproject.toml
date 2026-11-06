@@ -41,9 +41,7 @@ include = ["viva_iirabm", "vendor", "README.md"]
 
 [tool.pytest.ini_options]
 markers = ["slow: long-running simulations (deselect with -m 'not slow')"]
+addopts = "-m 'not slow'"
 
 [project.scripts]
 iirabm = "viva_iirabm.cli.__main__:main"
-
-[tool.uv.sources]
-vivarium-workbench = { path = "/Users/eranagmon/code/vivarium-workbench", editable = true }

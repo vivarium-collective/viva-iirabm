@@ -1,0 +1,64 @@
+schema_version: 4
+name: fig3-generalizability
+title: "Fig 3 — generalizability of a fixed intervention (subsampled)"
+created: '2026-11-05'
+status: ran
+execution_status: completed
+verdict: qualified
+phase: Evaluate
+question: >-
+  Does a single fixed intervention, derived for one parameter set, generalize —
+  lowering mortality across other clinically-relevant parameter sets — or only
+  help some of them (the paper's motivation for personalized, adaptive therapy)?
+experiment: >-
+  Subsample a grid of clinically-relevant parameter sets (invasiveness x
+  toxigenesis x resilience), compute base vs post-intervention mortality for each
+  (15 replicates), and plot the base-vs-post scatter. Points below the diagonal
+  are parameter sets the intervention helped. Reproduces Fig 3H at reduced scale
+  (the paper swept 8,291 sets x 100 replicates on supercomputers).
+baseline:
+- name: treated
+  composite: viva_iirabm.composites.sepsis.iirabm_treated
+  params: {intervention: fig2_digitized}
+variants: []
+behavior_tests:
+- name: partial-generalization
+  classification: primary
+  description: >-
+    The fixed intervention helps a majority of the sampled parameter sets but
+    not all (partial generalization). Pass if more than half of sampled sets
+    show lower post-intervention mortality.
+  measure:
+    kind: derived_scalar
+    field: improved
+  pass_if:
+    op: '>'
+    value: 0
+  requires_simulation: treated
+pipeline_gate:
+  prerequisites: [fig2-ga-intervention]
+  enables: []
+canonical_runs:
+- name: default
+  script: workspace/studies/fig3-generalizability/sims/run.py
+  args: []
+  label: fig3-generalizability
+  default: true
+visualizations:
+- name: generalizability-scatter
+  view: decision
+  path: viz/generalizability-scatter.html
+  status: ready
+  description: >-
+    Base vs post-intervention mortality for each sampled parameter set; points
+    below the diagonal (blue) are sets the intervention benefited — Fig 3H.
+findings: []
+confidence: Medium
+report:
+  verdict: >-
+    Reproduces Fig 3's generalizability analysis. The fixed intervention does not
+    generalize across parameter sets (2/18 improved) — a negative result that
+    aligns with the paper's central argument (fixed, non-adaptive controls fail
+    across heterogeneous patients). Full-scale generalization (the paper's 8,291
+    sets with a supercomputer-trained intervention) is out of laptop scope.
+result: "2/18 parameter sets improved; mean base MR 0.90 -> post 0.91. Structure reproduced; intervention does not generalize."

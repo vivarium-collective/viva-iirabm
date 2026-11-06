@@ -1,0 +1,209 @@
+{
+  "n_param_sets": 18,
+  "seeds_n": 15,
+  "n_steps": 9000,
+  "improved": 2,
+  "mean_base_mr": 0.8962962962962963,
+  "mean_post_mr": 0.911111111111111,
+  "points": [
+    {
+      "params": {
+        "invasiveness": 1,
+        "toxigenesis": 4,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.9333333333333333,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 1,
+        "toxigenesis": 4,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.6,
+      "post_mr": 0.8
+    },
+    {
+      "params": {
+        "invasiveness": 1,
+        "toxigenesis": 5,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 1,
+        "toxigenesis": 5,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.7333333333333333,
+      "post_mr": 0.5333333333333333
+    },
+    {
+      "params": {
+        "invasiveness": 1,
+        "toxigenesis": 6,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 1,
+        "toxigenesis": 6,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.7333333333333333,
+      "post_mr": 0.5333333333333333
+    },
+    {
+      "params": {
+        "invasiveness": 2,
+        "toxigenesis": 4,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 2,
+        "toxigenesis": 4,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.7333333333333333,
+      "post_mr": 0.7333333333333333
+    },
+    {
+      "params": {
+        "invasiveness": 2,
+        "toxigenesis": 5,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 2,
+        "toxigenesis": 5,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.8,
+      "post_mr": 0.9333333333333333
+    },
+    {
+      "params": {
+        "invasiveness": 2,
+        "toxigenesis": 6,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 2,
+        "toxigenesis": 6,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.7333333333333333,
+      "post_mr": 0.9333333333333333
+    },
+    {
+      "params": {
+        "invasiveness": 3,
+        "toxigenesis": 4,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 3,
+        "toxigenesis": 4,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 0.8666666666666667,
+      "post_mr": 0.9333333333333333
+    },
+    {
+      "params": {
+        "invasiveness": 3,
+        "toxigenesis": 5,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 3,
+        "toxigenesis": 5,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 3,
+        "toxigenesis": 6,
+        "host_resilience": 0.05,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    },
+    {
+      "params": {
+        "invasiveness": 3,
+        "toxigenesis": 6,
+        "host_resilience": 0.1,
+        "env_toxicity": 2,
+        "injury": 33
+      },
+      "base_mr": 1.0,
+      "post_mr": 1.0
+    }
+  ],
+  "headline": "2/18 parameter sets improved by the intervention"
+}

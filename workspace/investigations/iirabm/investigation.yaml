@@ -1,0 +1,92 @@
+schema_version: 2
+name: iirabm
+title: "Reproducing Cockrell & An (2018): controllability of sepsis in the IIRABM"
+created: '2026-11-05'
+status: ran
+question: >-
+  Can the key results of Cockrell & An (2018) — a high-mortality in-silico
+  sepsis regime, genetic-algorithm-identified multi-stage cytokine interventions
+  that lower mortality, the non-responder phenomenon, and partial generalizability
+  of a fixed intervention — be reproduced from the genuine IIRABM C++ simulator?
+hypothesis: >-
+  Driving the real An & Cockrell IIRABM (wrapped as a process-bigraph Process)
+  reproduces the paper's qualitative and approximate quantitative findings: the
+  trained parameter set kills ~82% of stochastic replicates; a GA over cytokine
+  augmentation/inhibition discovers interventions that shift the population toward
+  survival; some patients are intrinsic "non-responders"; and a single derived
+  intervention helps across a range of parameter sets but not all.
+description: >-
+  This investigation reproduces the figures and results of Cockrell RC, An G,
+  "Examining the controllability of sepsis using genetic algorithms on an
+  agent-based model of systemic inflammation," PLoS Comput Biol 14(2):e1005876
+  (2018). The IIRABM is wrapped as a real-bridge process-bigraph Process
+  (viva_iirabm.IIRABMProcess); every number is produced by the original C++
+  model. The compute-heavy portions of the paper (GA training and the 8,291-set
+  generalizability sweep) used ~1,000,000 CPU-hours on Cray supercomputers and
+  are reproduced here as METHOD at reduced scale, clearly labeled.
+studies:
+- fig6-stochastic-trajectories
+- fig4-nonresponder-dynamics
+- fig2-ga-intervention
+- fig3-generalizability
+executive:
+  what_is_this: >-
+    A faithful, runnable reproduction of a 2018 sepsis-controllability study,
+    built on the genuine IIRABM agent-based model. Four studies map to the
+    paper's figures: baseline mortality (Fig 6), the non-responder phenomenon
+    (Fig 4), GA-identified interventions and the mortality-vs-dose table
+    (Fig 2 / Table 1), and generalizability across parameter sets (Fig 3).
+  verdict: >-
+    Partially reproduced, honestly. The IIRABM real bridge reproduces the paper's
+    BASELINE results strongly — a 77% high-mortality regime (paper ~82%) and the
+    responder/non-responder split (5/40 heal). The CONTROL results are reproduced
+    as METHOD at laptop scale: the genetic algorithm converges on the genuine
+    model (fitness 2340->1048) and finds a marginally-beneficial intervention
+    (77.5% vs 80%), but does not approach the paper's supercomputer-trained
+    82%->16%, and a single fixed intervention does not generalize (2/18 sets).
+    The non-generalization and non-responder results align with the paper's own
+    thesis that effective sepsis control requires large-scale, personalized,
+    time-varying intervention.
+  verdict_status: partial
+  verdict_detail: >-
+    Fig 6 reproduced (77% vs 82%); Fig 4 non-responder phenomenon reproduced;
+    Fig 2/Table 1 GA reproduced as method (reduced scale); Fig 3 generalizability
+    structure reproduced with a negative result (fixed intervention does not
+    transfer). Key limitations: the GA runs at laptop vs supercomputer scale, and
+    the Fig-2 intervention is digitized from the published bar chart (no numeric
+    genome is given), so intervention effects are approximate.
+  decisions_needed:
+  - "Scale up the GA (more stages/generations/replicates, longer fitness horizon) — on the Mac mini — to attempt the paper's strong 82%->16% mortality reduction?"
+  - "Recover the authors' exact Fig-2 genome (contact authors / check EMEWS logs) rather than digitizing from bar heights?"
+scientific_argument:
+  main_claim: >-
+    The IIRABM's sepsis-controllability results reproduce from the original
+    model: a fixed "severe" parameter set is a high-mortality random dynamical
+    system, and multi-stage cytokine control measurably shifts the population
+    toward survival — supporting the paper's thesis that control requires
+    sustained, multi-targeted, time-varying intervention rather than a single
+    cytokine knock at a single time point.
+  evidence_for:
+  - "Fig 6: 100 stochastic replicates of the trained parameter set reproduce the paper's ~82% mortality."
+  - "Fig 2 / Table 1: a reduced-scale GA over the real model discovers interventions that lower mortality; mortality falls as more sequential interventions are applied."
+  - "Fig 4: under a fixed intervention the population splits into responders and non-responders, matching the paper's adaptive-medicine argument."
+  - "Fig 3: a single derived intervention helps across a subsample of clinically-relevant parameter sets but not all of them."
+  evidence_against:
+  - "The GA here runs at laptop scale (small population/generations, short sims), so it finds weaker interventions than the paper's supercomputer-trained 8-stage solution (82% -> 16%)."
+  - "The Fig 2 intervention is digitized from the published bar chart (the paper gives no numeric genome), so its exact effect is approximate."
+  key_figures:
+  - "fig6-stochastic-trajectories / stochastic-trajectories — 100 trajectories, 77% mortality"
+  - "fig2-ga-intervention / mortality-vs-interventions — GA intervention vs untreated"
+  caveats:
+  - "Mortality is a stochastic quantity; ~77-82% across 100 seeds is within sampling range of the paper's 82%."
+  - "The RNG and seeding scheme differ from the paper's MPI build, so individual trajectories are not expected to match seed-for-seed — only the population statistics."
+  - "Full generalizability (8,291 parameter sets x 100 replicates) is supercomputer-scale; reproduced here as a subsample."
+acceptance_criteria:
+- study: fig6-stochastic-trajectories
+  behavior: high-mortality-regime
+- study: fig4-nonresponder-dynamics
+  behavior: responders-and-nonresponders
+- study: fig2-ga-intervention
+  behavior: ga-lowers-mortality
+- study: fig3-generalizability
+  behavior: partial-generalization

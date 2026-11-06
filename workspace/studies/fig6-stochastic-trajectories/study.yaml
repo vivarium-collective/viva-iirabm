@@ -1,0 +1,58 @@
+schema_version: 4
+name: fig6-stochastic-trajectories
+title: "Fig 6 — baseline stochastic trajectories (~82% mortality)"
+created: '2026-11-05'
+status: ran
+execution_status: completed
+verdict: supported
+phase: Evaluate
+question: >-
+  Does the paper's trained parameter set (injury 33, invasiveness 2,
+  toxigenesis 5, env-toxicity 2, resilience 0.1) produce a high-mortality
+  random dynamical system — ~82% of stochastic replicates dying of sepsis?
+experiment: >-
+  Run 100 stochastic replicates (seeds 1-100) of the untreated IIRABM for 12,500
+  timesteps and classify each as death (oxygen deficit crosses the 80%-damage
+  threshold) or heal (infection cleared). Reproduces Fig 6A.
+baseline:
+- name: baseline
+  composite: viva_iirabm.composites.sepsis.iirabm_baseline
+  params: {injury: 33, invasiveness: 2, toxigenesis: 5, env_toxicity: 2, host_resilience: 0.1}
+variants: []
+behavior_tests:
+- name: high-mortality-regime
+  classification: primary
+  description: >-
+    The trained parameter set kills a large majority of stochastic replicates
+    (paper reports 82%). Pass if population mortality exceeds 50%.
+  measure:
+    kind: derived_scalar
+    field: mortality
+  pass_if:
+    op: '>'
+    value: 0.5
+  requires_simulation: baseline
+pipeline_gate:
+  prerequisites: []
+  enables: [fig4-nonresponder-dynamics, fig2-ga-intervention]
+canonical_runs:
+- name: default
+  script: workspace/studies/fig6-stochastic-trajectories/sims/run.py
+  args: []
+  label: fig6-stochastic-trajectories
+  default: true
+visualizations:
+- name: stochastic-trajectories
+  view: mechanism
+  path: viz/stochastic-trajectories.html
+  status: ready
+  description: >-
+    100 oxygen-deficit trajectories, red = death / blue = heal, with the
+    population mortality annotated — the reproduction of Fig 6A.
+findings: []
+confidence: High
+report:
+  verdict: >-
+    Reproduced. The trained parameter set is a high-mortality random dynamical
+    system: 77% of 100 stochastic replicates die of sepsis (paper ~82%).
+result: "77/100 seeds die (77% mortality; paper ~82%). Primary test (mortality > 50%) PASSES."

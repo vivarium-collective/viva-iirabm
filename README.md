@@ -1,6 +1,8 @@
 # viva-iirabm
 
 <!-- BEGIN:dashboard -->
+> **📊 [Browse the read-only workbench →](https://vivarium-collective.github.io/viva-iirabm/dashboard/)**
+> (reproduction figures, studies, and the IIRABM composites — no server needed)
 <!-- END:dashboard -->
 
 A [process-bigraph](https://github.com/vivarium-collective/process-bigraph)

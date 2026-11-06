@@ -1,0 +1,92 @@
+{
+  "ga": {
+    "n_stages": 3,
+    "pop_size": 10,
+    "generations": 5,
+    "replicate_seeds": [
+      1,
+      2,
+      3
+    ],
+    "n_steps": 3500,
+    "ga_seed": 0
+  },
+  "best_fitness": 1047.9710666666667,
+  "fitness_history": [
+    2340.115566666667,
+    2340.115566666667,
+    2340.115566666667,
+    2340.115566666667,
+    1047.9710666666667,
+    1047.9710666666667
+  ],
+  "best_intervention": [
+    [
+      0.75,
+      2.0,
+      1.0,
+      2.0,
+      5.0,
+      1.0,
+      5.0,
+      0.5,
+      0.75,
+      0.5,
+      20.0,
+      0.75
+    ],
+    [
+      0.25,
+      0.25,
+      0.75,
+      20.0,
+      0.25,
+      0.25,
+      2.0,
+      0.25,
+      20.0,
+      0.05,
+      0.25,
+      0.5
+    ],
+    [
+      0.25,
+      5.0,
+      1.0,
+      5.0,
+      0.75,
+      0.25,
+      0.25,
+      5.0,
+      5.0,
+      1.0,
+      0.75,
+      0.05
+    ]
+  ],
+  "baseline_mortality": 0.8,
+  "ga_intervention_mortality": 0.775,
+  "table1": [
+    {
+      "n_interventions": 0,
+      "mortality": 0.8
+    },
+    {
+      "n_interventions": 1,
+      "mortality": 0.55
+    },
+    {
+      "n_interventions": 3,
+      "mortality": 0.725
+    },
+    {
+      "n_interventions": 5,
+      "mortality": 0.9
+    },
+    {
+      "n_interventions": 8,
+      "mortality": 0.875
+    }
+  ],
+  "headline": "GA lowered mortality 80% -> 78% (reduced-scale; paper 82% -> 16% at full scale)"
+}

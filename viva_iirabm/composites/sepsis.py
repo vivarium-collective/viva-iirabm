@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from process_bigraph.composite_generator import composite_generator
 
+from ..core import build_core
 from ..interventions import NAMED, flatten
 
 _EMIT = {
@@ -73,6 +74,7 @@ def _document(core=None, *, intervention_flat=None, intervention_stages=0, **cfg
         "n_steps": {"type": "integer", "default": 8000, "description": "Simulation length (timesteps; 1 ~= 7 min)"},
     },
     emitters=[{"address": "local:ParquetEmitter", "paths": _PARQUET_PATHS}],
+    core_extensions=[build_core],
 )
 def iirabm_baseline(core=None, *, injury=33, host_resilience=0.1, toxigenesis=5,
                     env_toxicity=2, invasiveness=2, seed=1, n_steps=8000):
@@ -93,6 +95,7 @@ def iirabm_baseline(core=None, *, injury=33, host_resilience=0.1, toxigenesis=5,
         "n_steps": {"type": "integer", "default": 8000, "description": "Simulation length (timesteps)"},
     },
     emitters=[{"address": "local:ParquetEmitter", "paths": _PARQUET_PATHS}],
+    core_extensions=[build_core],
 )
 def iirabm_treated(core=None, *, intervention="fig2_digitized", seed=1, n_steps=8000):
     genome = NAMED[intervention]

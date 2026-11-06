@@ -1,0 +1,9 @@
+{
+  "n_seeds": 40,
+  "n_steps": 12500,
+  "base_mortality": 0.8,
+  "treated_mortality": 0.875,
+  "n_responders": 5,
+  "n_nonresponders": 35,
+  "headline": "treated mortality 88% vs baseline 80%; 35 non-responders"
+}

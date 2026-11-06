@@ -1,0 +1,8 @@
+{
+  "n_seeds": 100,
+  "n_steps": 12500,
+  "deaths": 77,
+  "mortality": 0.77,
+  "paper_target_mortality": 0.82,
+  "headline": "mortality 77% (paper ~82%)"
+}

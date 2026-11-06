@@ -1,0 +1,74 @@
+schema_version: 4
+name: fig2-ga-intervention
+title: "Fig 2 / Table 1 — GA-identified intervention lowers mortality"
+created: '2026-11-05'
+status: ran
+execution_status: completed
+verdict: qualified
+phase: Evaluate
+question: >-
+  Can a genetic algorithm over multi-stage cytokine augmentation/inhibition —
+  the paper's control-discovery method — find an intervention that lowers IIRABM
+  mortality, and does mortality fall as more sequential interventions are applied
+  (Table 1)?
+experiment: >-
+  Run a reduced-scale GA (tournament selection size 2, uniform crossover,
+  per-gene values from {0.05,0.25,0.5,0.75,1,2,5,10,20}) against the real IIRABM,
+  minimizing oxygen deficit + infection across replicate seeds. Report the
+  convergence curve, the discovered intervention (Fig 2-style log2 bars), the
+  mortality reduction vs untreated, and the mortality-vs-#interventions curve
+  (Table 1). The paper's production GA used ~1e6 CPU-hours; this reproduces the
+  method at laptop scale.
+baseline:
+- name: treated
+  composite: viva_iirabm.composites.sepsis.iirabm_treated
+  params: {intervention: fig2_digitized}
+variants: []
+behavior_tests:
+- name: ga-lowers-mortality
+  classification: primary
+  description: >-
+    The GA-discovered intervention lowers population mortality below the
+    untreated baseline. Pass if GA-intervention mortality < baseline mortality.
+  measure:
+    kind: derived_scalar
+    field: ga_intervention_mortality
+  pass_if:
+    op: '<'
+    value: 0.80  # untreated baseline mortality for this parameter set
+  requires_simulation: treated
+pipeline_gate:
+  prerequisites: [fig6-stochastic-trajectories]
+  enables: [fig3-generalizability]
+canonical_runs:
+- name: default
+  script: workspace/studies/fig2-ga-intervention/sims/run.py
+  args: []
+  label: fig2-ga-intervention
+  default: true
+visualizations:
+- name: ga-convergence
+  view: mechanism
+  path: viz/ga-convergence.html
+  status: ready
+  description: "GA best-fitness per generation (oxygen deficit + infection; lower = healthier)."
+- name: ga-intervention-bars
+  view: decision
+  path: viz/ga-intervention-bars.html
+  status: ready
+  description: "The GA-discovered intervention as log2 multiplier bars per cytokine per stage (Fig 2 style)."
+- name: mortality-vs-interventions
+  view: decision
+  path: viz/mortality-vs-interventions.html
+  status: ready
+  description: "Mortality vs number of sequential interventions applied (Table 1)."
+findings: []
+confidence: Medium
+report:
+  verdict: >-
+    GA method reproduced against the genuine model (fitness converges 2340->1048)
+    and its intervention is marginally beneficial (77.5% vs 80% untreated). The
+    dramatic mortality reduction in the paper requires supercomputer-scale search
+    and is not reproduced at laptop scale — consistent with the paper's thesis
+    that effective control demands a very large, multi-targeted search.
+result: "GA fitness 2340->1048; GA-intervention mortality 77.5% < baseline 80% (primary test PASSES, marginal)."
